@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"os/exec"
 	"strings"
 )
 
@@ -27,12 +26,6 @@ func setSystemVariable(key, value string) error {
 	// 将变量添加到PATH中
 	_, err = fmt.Fprintf(file, "\nexport PATH=$%s/bin:$PATH\n", key)
 	if err != nil {
-		return err
-	}
-
-	// 刷新
-	cmd := exec.Command("source", profilePath)
-	if err = cmd.Run(); err != nil {
 		return err
 	}
 
